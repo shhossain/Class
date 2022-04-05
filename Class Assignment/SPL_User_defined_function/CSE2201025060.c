@@ -5,7 +5,7 @@
 
 
 // Functions To Create 
-// introductionn 
+// introduction 
 // menu
 // age calculator - 1
 // discount calculator -2
@@ -26,7 +26,7 @@
 // Eqution Calculator -17
 // distance between two points - 18
 // password generoator - 19
-// current time - 20
+// show ascii number - 20
 
 void calculate_age();
 void age_calculator();
