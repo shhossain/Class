@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 
 // Functions To Create 
+// introductionn 
 // menu
 // age calculator - 1
 // discount calculator -2
@@ -16,6 +17,16 @@
 // Famous Quotes -8
 // Total price calculator - 9
 // swap numbers - 10
+// get a random number -11
+// Calculator - 12
+// Decimal To Binary - 13
+// Decimal To Octal - 14
+// Decimal To Hex - 15
+// Guess a number -  16
+// Eqution Calculator -17
+// distance between two points - 18
+// password generoator - 19
+// current time - 20
 
 void calculate_age();
 void age_calculator();
@@ -31,6 +42,18 @@ void show_quotes();
 void total_price_calculate();
 void swap_numbers();
 void menu();
+void calculator();
+void introduction();
+int convert();
+void decimal_to_bin();
+void decimal_to_oct();
+void decimal_to_hex();
+void guess_a_number();
+void quadratic_formula();
+void distance();
+void passsword_genarator();
+void show_ascii_number();
+
 
 //get a random number
 int get_random(int min,int max){
@@ -40,21 +63,40 @@ int get_random(int min,int max){
 }
 
 
+
+void introduction(){
+    printf("Name: Shafayet Hossain Shifat\n");
+    printf("ID: CSE2201025060\n");
+    printf("Section: 25A1\n");
+
+    printf("===========================================\n");
+}
+
 void menu(){
     printf("\n===========================================\n");
     printf("Select An Option:\n");
-    printf("1. Age Calculator\n");
-    printf("2. Discount Calculator\n");
-    printf("3. Check A Number is Prime or Not\n");
-    printf("4. Check A Number is Even or Odd\n");
-    printf("5. Calculate Total GPA\n");
-    printf("6. Rock Paper Scissors Game\n");
-    printf("7. Calculate Area Of a Circle\n");
-    printf("8. Show a Famous Quote\n");
-    printf("9. Total Price Calculator\n");
+    printf("1.  Age Calculator\n");
+    printf("2.  Discount Calculator\n");
+    printf("3.  Check A Number is Prime or Not\n");
+    printf("4.  Check A Number is Even or Odd\n");
+    printf("5.  Calculate Total GPA\n");
+    printf("6.  Rock Paper Scissors Game\n");
+    printf("7.  Calculate Area Of a Circle\n");
+    printf("8.  Show a Famous Quote\n");
+    printf("9.  Total Price Calculator\n");
     printf("10. Swap Two Numbers\n");
+    printf("11. Get A Random Number Between Two Numbers\n");
+    printf("12. Calculator\n");
+    printf("13. Decimal To Binary Converter\n");
+    printf("14. Decimal To Octal Converter\n");
+    printf("15. Decimal To Hex Converter\n");
+    printf("16. Play 'Guess A Number'\n");
+    printf("17. Calculate x if equation look like this ' ax^2 + bx + c = 0' \n");
+    printf("18. Distance between two points\n");
+    printf("19. Password Generator\n");
+    printf("20. Show Characters ASCII Number\n");
 
-    printf("0. Exit\n");
+    printf("0.  Exit\n");
     printf("===========================================\n");
 
 }
@@ -62,17 +104,13 @@ void menu(){
 int main()
 {   
 
-    printf("Name: Shafayet Hossain Shifat\n");
-    printf("ID: CSE2201025060\n");
-    printf("Section: 25A1\n");
-
-    printf("===========================================\n");
-
-
+    
+    introduction();
+    menu();
     while (1){
 
-    menu();
-    int n,a,b;
+    
+    int n,a,b,min,max;
     printf("\nEnter Your Choice:");
     scanf("%d",&n);
 
@@ -107,9 +145,41 @@ int main()
             total_price_calculate();
             break;
         case 10:
-            printf("Enter Two Number:\n");
+            printf("Enter Two Number:");
             scanf("%d %d",&a,&b);
             swap_numbers(a,b);
+            break;
+        case 11:
+            printf("Enter min max(ex. 1 10):");
+            scanf("%d %d",&min,&max);
+            printf("A Random Number Between %d-%d:%d\n",min,max,get_random(min,max));
+            break;
+        case 12:
+            calculator();
+            break;
+        case 13:
+            decimal_to_bin();
+            break;
+        case 14:
+            decimal_to_oct();
+            break;
+        case 15:
+            decimal_to_hex();
+            break;
+        case 16:
+            guess_a_number();
+            break;
+        case 17:
+            quadratic_formula();
+            break;
+        case 18:
+            distance();
+            break;
+        case 19:
+            passsword_genarator();
+            break;
+        case 20:
+            show_ascii_number();
             break;
         default:
             printf("Invalid Choice.\n");
@@ -119,6 +189,168 @@ int main()
 
     return 0;
 }
+
+
+void show_ascii_number(){
+    char c;
+    printf("Enter A Character:");
+    scanf(" %c",&c);
+    printf("ASCII Number: %d",c);
+}
+
+void passsword_genarator(){
+    int len;
+    printf("Password Length:");
+    scanf("%d",&len);
+    printf("Password:\t");
+    for (int i = 0; i < len; ++i)
+    {   
+        printf("%c",get_random(i,128));
+    }
+    printf("\n");
+
+}
+
+
+// distance between two points
+void distance(){
+    int x1,y1,x2,y2;
+    printf("Enter Point1(ex. 5 10) :");
+    scanf("%d %d",&x1,&y1);
+    printf("Enter Point2(ex. 4 -1) :");
+    scanf("%d %d",&x2,&y2);
+
+    int eq = pow( ( pow((x2-x1),2) + pow((y2-y1),2) ), 0.5 );
+    int m = abs(x1-x2) + abs(y1-y2);
+    printf("Euclidean Distance : %d\n",eq);
+    printf("Manhattan Distance : %d\n",m);
+}
+
+void quadratic_formula(){
+    int a,b,c;
+
+    printf("Enter a,b,c(ex 3 5 10):");
+    scanf("%d %d %d",&a,&b,&c);
+
+    int discriminant = (b*b - 4*a*c);
+    int x1,x2;
+
+    if (discriminant<0){
+        printf("'%dx^2 +  %dx + %d = 0 'has no real number solutions\n",a,b,c);
+    }
+    else{
+        x1 = ( -b + pow(pow(b,2) - 4*a*c,0.5) ) / (2*a);
+        x2 = ( -b - pow(pow(b,2) - 4*a*c,0.5) ) / (2*a);
+ 
+
+        printf("x=%d or x=%d\n",x1,x2);
+    }
+
+}
+
+// game guess a number
+void guess_a_number(){
+    int min = get_random(1,100);
+    int max = get_random(min+10,100+10);
+    int number = get_random(min,max);
+    int guess;
+
+    int try = 5;
+    int is_guessed = 0;
+    printf("Guess Number Between %d-%d\n",min,max);
+    for (int i = 1; i <= try; ++i)
+    {
+        printf("Try Left: %d\n",try-i+1);
+        printf("Enter Yor Guess:");
+        scanf("%d",&guess);
+
+        if (number==guess)
+        {
+            printf("You Guessed Correctly\n");
+            is_guessed = 1;
+            break;
+        }
+        else if(number>guess){
+            printf("Number is larger\n");
+        }
+        else if(number<guess){
+            printf("Number is smaller\n");
+        }
+
+    }
+
+    if (is_guessed==0)
+    {
+        printf("Your Try Ended.\nThe Number Was %d",number);
+    }
+
+}
+
+
+// number conberter
+int convert(int number,int base){
+    long long bin = 0;
+    int j,rem, i = 1;
+
+    for(j=number;j!=0;j)
+    {
+        rem = j % base;
+        j /= base;
+        bin += rem * i;
+        i *= 10;
+    }
+    return bin;
+}
+
+
+
+
+void decimal_to_bin(){
+    int a;
+    printf("Enter A Number:");
+    scanf("%d",&a);
+    printf("%d is %d in Binary\n",a,convert(a,2));
+}
+
+void decimal_to_oct(){
+    int a;
+    printf("Enter A Number:");
+    scanf("%d",&a);
+    printf("%d is %d in Octal\n",a,convert(a,8));
+}
+
+void decimal_to_hex(){
+    int a;
+    printf("Enter A Number:");
+    scanf("%d",&a);
+    printf("%d is %X in Hex\n",a,a);
+}
+
+
+// caculator
+void calculator(){
+    int a,b;
+    int o;
+    printf("Enter Two Number(ex. 45 10):");
+    scanf("%d %d",&a,&b);
+    printf("Enter Oparation '+'=1 '-'=2, '*'=3 '/'=4 (ex. 4):");
+    scanf("%d",&o);
+
+    if(o==1){
+        printf("%d + %d = %d\n",a,b,a+b);
+    }
+    else if(o==2){
+        printf("%d - %d = %d\n",a,b,a-b);
+    }
+    else if(o==3){
+        printf("%d * %d = %d\n",a,b,a*b);
+    }
+    else if(o==4){
+        printf("%d - %d = %d\n",a,b,a/b);
+    }
+
+}
+
 
 //item price calculator
 void total_price_calculate(){
@@ -276,7 +508,7 @@ int game_logic(){
     int iswin;
 
     if (user_choice==1 && computer_choice == 1){
-        printf("\n\nYou Choice 'Rock'\t\t Computer Choice 'Rock'\n\n\t\t\tTie!!!\n");
+        printf("\n\nYou Choice 'Rock'\t\t Computer Choice 'Rock'\n\n\t\t\t!!!Tie!!!\n");
         iswin = -1;
     }
     else if (user_choice==1 && computer_choice == 2){
@@ -284,32 +516,32 @@ int game_logic(){
         iswin = 0;
     }
     else if (user_choice==1 && computer_choice == 3){
-        printf("\n\nYou Choice 'Rock'\t\t Computer Choice 'Scissors'\n\n\t\t\tWin!!!\n");
+        printf("\n\nYou Choice 'Rock'\t\t Computer Choice 'Scissors'\n\n\t\t\t!!!Win!!!\n");
         iswin = 1;
     }
     else if (user_choice==2 && computer_choice == 1){
-        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Rock'\n\n\t\t\tWin!!!\n");
+        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Rock'\n\n\t\t\t!!!Win!!!\n");
         iswin = 1;
     }
     else if (user_choice==2 && computer_choice == 2){
-        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Paper'\n\n\t\t\tTie!!!\n");
+        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Paper'\n\n\t\t\t!!!Tie!!!\n");
         iswin = -1;
     }
     else if (user_choice==2 && computer_choice == 3){
-        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Scissors'\n\n\t\t\tLose!!!\n");
+        printf("\n\nYou Choice 'Paper'\t\t Computer Choice 'Scissors'\n\n\t\t\t!!!Lose!!!\n");
         iswin = 0;
     }
 
      else if (user_choice==3 && computer_choice == 1){
-        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Rock'\n\n\t\t\tLose!!!\n");
+        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Rock'\n\n\t\t\t!!!Lose!!!\n");
         iswin = 0;
     }
     else if (user_choice==3 && computer_choice == 2){
-        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Paper'\n\n\t\t\tWin!!!\n");
+        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Paper'\n\n\t\t\t!!!Win!!!\n");
         iswin = 1;
     }
     else if (user_choice==3 && computer_choice == 3){
-        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Scissors'\n\n\t\t\tTie!!!\n");
+        printf("\n\nYou Choice 'Scissors'\t\t Computer Choice 'Scissors'\n\n\t\t\t!!!Tie!!!\n");
         iswin = 0;
     }
     else{
@@ -335,6 +567,7 @@ void grade_calculate(){
     float f=0.0;
 
     float total_grade = 0;
+
 
     printf("How many Subjects do you want to calculate (ex. 8)\n");
     scanf("%d",&subs);
