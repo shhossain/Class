@@ -68,7 +68,7 @@ void introduction(){
     printf("Name: Shafayet Hossain Shifat\n");
     printf("ID: CSE2201025060\n");
     printf("Section: 25A1\n");
-    printf("Number: 01724792124");
+    printf("Number: 01724792124\n");
     printf("===========================================\n");
 }
 
